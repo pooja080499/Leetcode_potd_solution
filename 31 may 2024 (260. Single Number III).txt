@@ -1,0 +1,30 @@
+
+////java code
+
+class Solution {
+    public int[] singleNumber(int[] nums) {
+        int ans[]=new int[2];
+        Map<Integer,Integer> map=new HashMap<Integer,Integer>();
+        for(int i=0;i<nums.length;i++)
+        {
+            int key=nums[i];
+            int freq=1;
+            if(map.containsKey(key)) freq=map.get(key)+1;
+            map.put(key,freq);
+        }
+        int i=0;
+
+        for(Map.Entry<Integer,Integer> entry: map.entrySet())
+        {
+            if(entry.getValue()==1)
+            {
+                ans[i]=entry.getKey();
+                i++;
+            }
+        }
+
+      
+
+        return ans;
+    }
+}
