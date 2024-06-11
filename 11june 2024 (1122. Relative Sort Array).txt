@@ -1,0 +1,56 @@
+//java code....
+
+
+class Solution {
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+
+        Map<Integer,Integer> map=new HashMap<Integer,Integer>();
+        for(int i=0;i<arr1.length;i++)
+        {
+            int key=arr1[i];
+            int freq=1;
+
+            if(map.containsKey(key)) freq=map.get(key)+1;
+
+            map.put(key,freq);
+        }
+        int index=0;
+        int[] drr=new int[arr1.length];
+        for(int i=0;i<arr2.length;i++)
+        {
+                int freq=map.get(arr2[i]);
+                map.remove(arr2[i]);
+                int j=0;
+                while(j<freq)
+                {
+                    drr[index]=arr2[i];
+                    index++;
+                    j++;
+                }
+
+        }
+        ArrayList<Integer> arr=new ArrayList<Integer>();
+
+        for(Map.Entry<Integer,Integer> entry:map.entrySet())
+        {
+            int freq=entry.getValue();
+            int j=0;
+            while(j<freq)
+            {
+                arr.add(entry.getKey());
+                j++;
+            }
+        }
+        //System.out.println(arr);
+        Collections.sort(arr);
+         //System.out.println(arr);
+
+        for(int i=0;i<arr.size();i++)
+        {
+            drr[index]=arr.get(i);
+            index++;
+        }
+        return drr;
+        
+    }
+}
